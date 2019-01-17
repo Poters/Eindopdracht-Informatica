@@ -1,9 +1,12 @@
 .rec{
-  position: fixed;
+  position: relative;
   
 }
 .header{
   text-align:center;
   margin: 5%;
   width: 90%;
+}
+#right1{
+	position: fixed;
 }
