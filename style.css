@@ -1,12 +1,34 @@
 .rec{
-  position: relative;
+  display:block;
   
 }
 .header{
   text-align:center;
   margin: 5%;
   width: 90%;
+  border: 1px solid black;
+  background-image:linear-gradient(to right, green, #78FF78);
 }
-#right1{
-	position: fixed;
+#headtxt{
+	color:#0000FF
+}
+
+.content{
+	margin:auto;
+	border:1px solid black;
+	border-radius:5px;
+	width:70%;
+	padding:2px;
+	font-size:1.15	em;
+	font-family:"Comic Sans MS","Times New Roman","serif";
+}
+.leftrecs{
+	position:absolute;
+	left:10px;
+	display:inline;
+}
+.rightrecs{
+	position:absolute;
+	right:10px;
+	display:inline;
 }
