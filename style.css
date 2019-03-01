@@ -32,3 +32,8 @@
 	right:10px;
 	display:inline;
 }
+.main{
+	grid-template-columns: 50px, auto, 50px;
+	grid-template-rows: 100px, auto, 50px;
+	
+}
