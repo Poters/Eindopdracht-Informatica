@@ -6,6 +6,7 @@
 	text-align:center;
 	grid-column-start: 1;
 	grid-column-end:-1;
+	grid-row: 1;
   	background-image:linear-gradient(to right, green, #78FF78);
 }
 #headtxt{
