@@ -16,7 +16,7 @@ body {
 	   en nieuw: */
 	display: grid;
 	grid-template-columns: 1fr 18fr 1fr;
-	grid-template-rows: 100px minmax(max-content, 75vh) 50px;
+	grid-template-rows: 170px minmax(max-content, 75vh) 100px;
 	
 }
 
@@ -67,4 +67,5 @@ body {
 	grid-row-start: 3;
 	grid-row-end: 4;
 	background-color: red;
+	align:center;
 }
