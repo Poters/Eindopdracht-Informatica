@@ -27,7 +27,7 @@ body {
 	grid-column-end: 4;
 	grid-row-start: 1;
 	grid-row-end: 2;
-	background-image: linear-gradient(to right, #80FF80, #00FF00)
+	background-image: linear-gradient(to right, rgb(128,225,128), rgb(0,255,0))
   color: #0000FF;
 }
 
