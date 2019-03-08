@@ -67,5 +67,5 @@ body {
 	grid-row-start: 3;
 	grid-row-end: 4;
 	background-color: red;
-	align:center;
+	text-align:center;
 }
