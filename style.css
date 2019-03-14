@@ -1,3 +1,74 @@
-body{
-  
+html {
+	height: 100vh;
+}
+body {
+	min-height: 100vh;
+}
+
+
+/* verandering 2: main naar boven gehaald (css wordt lineair ingelezen), display: grid toegevoegd en de percentages vervangen door fr 
+   ook een aantal andere syntaxdingen gewijzigd (kommas in de grid-template regels weggehaald bv)
+*/
+.main{
+	/* oud:
+	grid-template-columns: 5%, 90%, 5%;
+	grid-template-rows: 100px, auto, 50px;
+	   en nieuw: */
+	display: grid;
+	grid-template-columns: 1fr 18fr 1fr;
+	grid-template-rows: 170px minmax(max-content, 75vh) 100px;
+	
+}
+
+/* in de volgende sectie definities consequent gewerkt met grid-column-start & grid-column-end (idem met row). */
+.header{
+	text-align:center;
+	grid-column-start: 1;
+	grid-column-end: 4;
+	grid-row-start: 1;
+	grid-row-end: 2;
+	background-image: linear-gradient(to right, rgb(128,225,128), rgb(0,255,0));
+  color: #0000FF;
+}
+
+
+.content{
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	padding:2px;
+	font-size:1.15	em;
+	font-family:"Comic Sans MS","Times New Roman","serif";
+	background-color: green;
+	text-align: center;
+}
+
+
+.leftrecs{
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	background-color: green;
+	
+}
+.rightrecs{
+	grid-column-start: 3;
+	grid-column-end: 4;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	background-color: green;
+}
+
+.footer {
+	grid-column-start: 1;
+	grid-column-end: 4;
+	grid-row-start: 3;
+	grid-row-end: 4;
+	background-color: red;
+	text-align:center;
+}
+#rotatedad{
+	transform: rotate(2deg);
 }
