@@ -1,3 +1,4 @@
+
  .red {
  color:red; 
 }
@@ -144,4 +145,8 @@
  grid-row-end: 6;
  background-color: #0F680C;
  color: #0F680C;
+
+.red {
+    color: red;
+
 }
