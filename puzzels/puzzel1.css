@@ -23,6 +23,7 @@
  grid-row-start: 2;
  grid-row-end: 3;
  background-color: maroon;
+ color: maroon;
 }
 .vak2 {
  grid-column-start: 3;
@@ -30,6 +31,7 @@
  grid-row-start: 2;
  grid-row-end: 3;
  background-color: yellow;
+ color: yellow;
 }
 .vak3 {
  grid-column-start: 4;
@@ -37,6 +39,7 @@
  grid-row-start: 2;
  grid-row-end: 3;
  background-color: black;
+ color: black;
 }
 .vak4 {
  grid-column-start: 5;
@@ -44,6 +47,7 @@
  grid-row-start: 2;
  grid-row-end: 3;
  background-color: white;
+ color: white;
 }
 .vak5 {
  grid-column-start: 2;
@@ -51,6 +55,7 @@
  grid-row-start: 3;
  grid-row-end: 4;
  background-color: grey;
+ color: grey;
 }
 .vak6 {
  grid-column-start: 3;
@@ -58,6 +63,7 @@
  grid-row-start: 3;
  grid-row-end: 4;
  background-color: orange;
+ color: orange;
 }
 .vak7 {
  grid-column-start: 4;
@@ -65,6 +71,7 @@
  grid-row-start: 3;
  grid-row-end: 4;
  background-color: #AC1CC8;
+ color: #AC1CC8;
 }
 .vak8 {
  grid-column-start: 5;
@@ -72,6 +79,7 @@
  grid-row-start: 3;
  grid-row-end: 4;
  background-color: #92DC23;
+ color: #92DC23;
 }
 .vak9 {
  grid-column-start: 2;
@@ -79,6 +87,7 @@
  grid-row-start: 4;
  grid-row-end: 5;
  background-color: #B58556;
+ color: #B58556;
 }
 .vak10 {
  grid-column-start: 3;
@@ -86,6 +95,7 @@
  grid-row-start: 4;
  grid-row-end: 5;
  background-color: red;
+ color: red;
 }
 .vak11 {
  grid-column-start: 4;
@@ -93,6 +103,7 @@
  grid-row-start: 4;
  grid-row-end: 5;
  background-color: blue;
+ color: blue;
 }
 .vak12 {
  grid-column-start: 5;
@@ -100,6 +111,7 @@
  grid-row-start: 4;
  grid-row-end: 5;
  background-color: brown;
+ color: brown;
 }
 .vak13 {
  grid-column-start: 2;
@@ -107,6 +119,7 @@
  grid-row-start: 5;
  grid-row-end: 6;
  background-color: pink;
+ color: pink;
 }
 .vak14 {
  grid-column-start: 3;
@@ -114,6 +127,7 @@
  grid-row-start: 5;
  grid-row-end: 6;
  background-color: green;
+ color: green;
 }
 .vak15 {
  grid-column-start: 4;
@@ -121,6 +135,7 @@
  grid-row-start: 5;
  grid-row-end: 6;
  background-color: #3FBAB2;
+ color: #3FBAB2;
 }
 .vak16 {
  grid-column-start: 5;
@@ -128,4 +143,5 @@
  grid-row-start: 5;
  grid-row-end: 6;
  background-color: #0F680C;
+ color: #0F680C;
 }
