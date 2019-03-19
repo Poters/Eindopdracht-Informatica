@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr 1fr 2fr;
   grid-templace-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-  align: center;
+  text-align: center;
 }
 
 .header {
