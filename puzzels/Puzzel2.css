@@ -26,3 +26,11 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+#puz3{
+  display:none;
+  background-color:green;
+}
+#wrong{
+  display:none;
+  background-color:green;
+}
