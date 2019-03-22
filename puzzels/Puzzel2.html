@@ -9,16 +9,18 @@
     <input type="number" id="invoer">
     <br>
     <button onclick="check()"> Check antwoord </button>
+    <div id="puz3">Next</div>
+    <div id="wrong">Next</div>
   </body>
 </html>
 <script>
   function check() {
   var z = document.getElementById("invoer").value;
     if (z == 1513) {
-    alert("Goed")
+    document.getElementById("puz3").style = "display:block;";
 
     } else {
-     alert("Fout")
+     document.getElementById("wrong").style = "display:block;";
     }
   }
 </script>
