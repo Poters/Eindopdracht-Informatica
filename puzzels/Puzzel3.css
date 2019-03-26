@@ -1,5 +1,45 @@
+html {
+	height: 100vh;
+}
+body {
+	min-height: 100vh;
+}
+
+
 .main3{
   display: grid;
-  grid-template-rows: 1fr, 1fr;
-  grid-template-columns: 1fr, 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
+  
+}
+#log{
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 1;
+	grid-row-end: 3;
+	padding: 5px;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 5px;
+	font-size: 0.9em;
+}
+#map{
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 2;
+	padding: 5px;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 5px;
+}
+#inv{
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	padding: 5px;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 5px;
 }

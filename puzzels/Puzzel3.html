@@ -15,8 +15,9 @@
 			
 		</div>
 		<div id="inv">
-			
-			
+			<button id="opt1" onclick="Game.opt1()"></button>
+			<button id="opt2" onclick="Game.opt2()"></button>
+			<div id="content"></div>
 		</div>
 		
 		
@@ -32,7 +33,7 @@
 			turn: 0,
 			pos: "front",
 			inv: [],
-			txt: "";
+			txt: "",
 			startturn: function(where){
 				pos = where;
 				switch (where){
@@ -45,26 +46,187 @@
 						l("opt1").innerHTML = "shed";
 						l("opt2").innerHTML = "front";
 						txt = "It smells like rotten apples. The source isn't hard to deduce, a giant tree is mayestously asserting dominance over the garden. You see a small shaggy shed in the corner. Maybe it's worth checking out?";
+						if(Game.has("basement key position")){
+							txt += " Looking under the apple tree, you see something silvery shining. You pick up the key which will later open up the trapdoor to the basement."
+							Game.addtoinv("basement key");
+						}
 						break;
 					case "hall":
 						l("opt1").innerHTML = "living room";
 						l("opt2").innerHTML = "kitchen";
 						txt = "You succesfully entered the house, but the door locked behind you. Guess there is no way back and you have to find another exit.";
 						break;
+					case "shed":
+						l("opt1").innerHTML = "backyard";
+						l("opt2").innerHTML = "backyard";
+						txt = "The shad have had better times. You wonder when it's going to collapse. On the worktable lays a wire cutter. Maybe its usefull for later.";
+						Game.addtoinv("wire cutter");
+						break;
+					case "living room":
+						l("opt1").innerHTML = "study";
+						l("opt2").innerHTML = "dining room";
+						txt = "There is not much to see here. Apart from the magazine that lays on the table. You probably should move on.";
+						break;
+					case "kitchen":
+						l("opt1").innerHTML = "dining room";
+						l("opt2").innerHTML = "stairs";
+						txt = "Whoever built this house had a strange sense of taste. Not in a way that the kitchen is very 'untasty', but the architect put the stairs into the kitchen. When silently listening, you seem to hear vague footsteps from above.";
+						break;
+					case "study":
+						l("opt1").innerHTML = "living room";
+						l("opt2").innerHTML = "open desktable";
+						txt = "Files, data papers and bureaucraty, the study is a complete mess. What gets your attention is a little drawer in the desk. A small silver keyhole hints that it is locked.";
+						break;
+					case "dining room":
+						l("opt1").innerHTML = "kitchen";
+						l("opt2").innerHTML = "living room";
+						txt = "A large table with room for 6 persons tells that the people in this house are with many. It is best not to encounter them unprepared.";
+						if(Math.random()>0.5 && !Game.has("desktable key")){txt += " You note a little key on the table. (+ desktable key)"; Game.addtoinv("desktable key");}
+						break;
+					case "open desktable":
+						l("opt1").innerHTML = "study";
+						l("opt2").innerHTML = "study";
+						if(Game.has("desktable key")){
+							txt = "The small key fits, and opens up the drawer. Inside you find a torn paper which says: 'the key to the basement lays under the apple tree'.";
+							Game.addtoinv("basement key position");
+						}
+						else{
+							txt = "The drawer is made of sturdy wood and is not able to open without a fitting key or a lesser fitting hammer.";
+						}
+						break;
+					case "stairs":
+						l("opt1").innerHTML = "backyard";
+						l("opt2").innerHTML = "hallway (lower)";
+						txt = "The architecture in this house keeps getting stranger at the time. At the side of the stair, a passage leads to the outside. This will be an exellent escape route if you get into a sticky situation.";
+						break;
+					case "hallway (lower)":
+						l("opt1").innerHTML = "bathroom";
+						l("opt2").innerHTML = "sleeping room";
+						txt = "The voices you heard at the bottom of the stairs are getting louder. It's best to move silently on from now on. Everytime you pass through a hallway, you have 1% chance of being discovered. When discovered, you have to flee or you have to self-defend. Some methods of self defending have more succes chance, and some are more silent reducing the chance you being forced to flee.";
+						if(Math.random<0.01){
+							Game.detected()
+						}
+						break;
+					case "bathroom":
+						l("opt1").innerHTML = "stairs";
+						l("opt2").innerHTML = "hallway (mid)";
+						txt = "The bathroom is looking pretty clean, suprisingly. On the washing table lies a piece of soap.";
+						Game.addtoinv("soap");
+						break;
+					case "sleeping room":
+						l("opt1").innerHTML = "hallway (lower)";
+						l("opt2").innerHTML = "bedside table";
+						txt = "The bedroom isn't more than a bed with a small table. That table, however, has a small drawer. It's a bit rusty, so opening it could draw some attention.";
+						break;
+					case "bedside table":
+						if(Math.random()<0.07){
+							Game.detected()
+						}else{
+							txt = "Succes! A loaded gun appears for you to defend yourself. It has no silencer, so only use this in dire situations!";
+							Game.addtoinv("loaded handgun");
+						}
+						l("opt1").innerHTML = "sleeping room";
+						l("opt2").innerHTML = "sleeping room";
+						break;
+					case "hallway (mid)":
+						l("opt1").innerHTML = "hallway (lower)";
+						l("opt2").innerHTML = "lounge";
+						txt = "...";
+						if(Math.random()<0.01){Game.detected();}
+						break;
+					case "lounge":
+						l("opt1").innerHTML = "hallway (upper)";
+						l("opt2").innerHTML = "hallway (mid)";
+						txt = "A TV, a pool table and a game console, everything you need for a good night of gaming. Apparently.";
+						if(Math.random()<0.3){
+							txt += " You find a small safe that is locked with some steel wires. They can probably be cut open somehow.";
+							if(Game.has("wire cutter"){
+								txt += " You remember the wire cutter you found in the shed. By opening it, you find a baseball bat. You wonder why it was stored in that safe...";
+								Game.addtoinv("wooden bat");
+							}
+						}
+						break;
+					case "hallway (upper)":
+						l("opt1").innerHTML = "spiral staircase";
+						l("opt2").innerHTML = "meeting room";
+						txt = "To the left lies a spiral staircase that seems to lead to a basement. To the right is the meeting room, where the safe is located. It is next to the rooms the crooks are though, so the chances they see you in there are pretty high.";
+						if(Math.random<0.01){Game.detected();}
+						break;
+					case "spiral staircase":
+						l("opt1").innerHTML = "hallway (upper)";
+						l("opt2").innerHTML = "basement"
+						txt = "The basement trapdoor at the bottom of the staircase is locked with two iron chains. No way of getting into that place without a key.";
+						break;
+					case "basement":
+						if(Game.has("basement key")){
+							l("opt1").innerHTML = "spiral staircase";
+							l("opt2").innerHTML = "spiral staircase";
+							txt = "The basement opens, but looks quite empty. On closer inspection, you find a tattered note saying '4786'".
+							Game.addtoinv("Code: 4786");
+						}else{
+							l("log").innerHTML += "<p><b>basement</b>: Without key, entering this place is impossible.";
+							Game.startturn("spiral staircase");
+						}
+						break;
+					case "meeting room":
+						l("opt1").innerHTML = "hallway (upper)";
+						l("opt2").innerHTML = "open safe";
+						txt = "The voices are coming from the next room. It's now a simple question of opening that safe and escaping with the papers.";
+						if(Math.random()<0.1){Game.detected()}
+						break;
+					case "open safe":
+						if(Game.has("Code: 4786")){
+							l("opt1").innerHTML = "hallway (upper)";
+							l("opt2").innerHTML = "YEET out of a window";
+							txt = "You have the secret papers! You only have to find an escape route now. You can go the silent way, walking through the house again, or jump out of a window. This will probably draw some attention, but its faster.";
+							
+						}
 					
-			
-			
 					default:
+						console.warn("I haven't programmed this path yet @ " + pos);
 						return "error";
-					}
-					l("log").innerHTML += "<p><b>" + pos + "</b>: " + txt + "</p>";
+				}
+				l("log").innerHTML += "<p><b>" + pos + "</b>: " + txt + "</p>";
 					
+				},
+			opt1: function(){
+				var option = l("opt1").innerHTML;
+				Game.startturn(option);
+			},
+			opt2: function(){
+				var option = l("opt2").innerHTML;
+				Game.startturn(option);
+			},
+			
+			addtoinv: function(item){
+			var pushable = true;
+				for(var i=0; i<Game.inv.length; i++){
+					if(item == Game.inv[i]){
+						pushable = false;
+						break;
+					}
+					else{continue;}
+				}
+				if(pushable){
+					Game.inv.push(item);
+				}else{pushable = true}
+				
+				l("content").innerHTML = "<p>You have:</p>";
+				for(var i=0; i<Game.inv.length;i++){
+					if(i<Game.inv.length-1){
+						l("content").innerHTML += Game.inv[i] + ",<br>";
+					}else{
+						l("content").innerHTML += Game.inv[i] + ".<br>";
+					}
 				}
 				
+			},
+			has: function(what){
+				return Game.inv.includes(what);
 			}
+		}
 		
-		
-		
+		Game.startturn("front");
 	</script>
 	
 </body>
