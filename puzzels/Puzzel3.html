@@ -4,6 +4,68 @@
 	<link href="Puzzel3.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+	<!-- dit wordt de infiltratiegame -->
+	<div class="main3">
+		<div class="log">
+			
+			
+		</div>
+		<div class="map">
+			
+			
+		</div>
+		<div class="inv">
+			
+			
+		</div>
+		
+		
+	</div>
+	
+	
+	<script>
+		function l(what){
+			return document.getElementById(what);
+		}
+		
+		var Game = {
+			turn: 0,
+			pos: "front",
+			inv: [],
+			txt: "";
+			startturn: function(where){
+				pos = where;
+				switch (where){
+					case "front":
+						l("opt1").innerHTML = "backyard";
+						l("opt2").innerHTML = "hall";
+						txt = "You see the semi-giant house in front of you. Looking through a window, you see a silhouette of a man. There is no choice but to be careful in there.";
+						break;
+					case "backyard":
+						l("opt1").innerHTML = "shed";
+						l("opt2").innerHTML = "front";
+						txt = "It smells like rotten apples. The source isn't hard to deduce, a giant tree is mayestously asserting dominance over the garden. You see a small shaggy shed in the corner. Maybe it's worth checking out?;
+						break;
+					case "hall":
+						l("opt1").innerHTML = "living room";
+						l("opt2").innerHTML = "kitchen";
+						txt = "You succesfully entered the house, but the door locked behind you. Guess there is no way back and you have to find another exit.";
+						break;
+					
+			
+			
+					default:
+						return "error";
+					}
+					l("log").innerHTML += "<p><b>" + pos + "</b>: " + txt + "</p>";
+					
+				}
+				
+			}
+		
+		
+		
+	</script>
 	
 </body>
 </html>
