@@ -43,6 +43,7 @@
 			inv: [],
 			txt: "",
 			crooks: 6,
+			ammo: 4,
 			startturn: function(where){
 				pos = where;
 				switch (where){
@@ -135,7 +136,7 @@
 						if(Math.random()<0.25){
 							Game.detected()
 						}else{
-							txt = "Succes! A loaded gun appears for you to defend yourself. It has no silencer, so only use this in dire situations!";
+							txt = "Succes! A loaded gun appears for you to defend yourself. It has no silencer, so only use this in dire situations! Also, you notice only four bullets in the magazine.";
 							Game.addtoinv("loaded handgun");
 						}
 						l("opt1").innerHTML = "sleeping room";
@@ -274,6 +275,7 @@
 					if(Game.crooks==6){l("log").innerHTML += "<p><b><u>OH NO!</u></b> You have been heard and people are coming your way! You can defend yourself in various ways, but some are more effective than others. Choose wisely and choose fast!";}
 				}else{
 					Game.unfreeze();
+					l("log").innerHTML += "You knocked down all the baddies in here, so you are free to do whatever you want now.";
 				}
 				
 			},
@@ -305,17 +307,23 @@
 						}
 						break;
 					case "handgun":
-						if(Math.random()<0.95){
-							l("log").innerHTML += "<p>Jeepers! you completely neutered this crook! This may or may not be a bit against the law, you know... Well, lets say this was for self-defence purposes.</p>";
-							Game.crooks--;
-							Game.detected();
-							
+						if(Game.ammo>0){
+							if(Math.random()<0.95){
+								l("log").innerHTML += "<p>Jeepers! you completely neutered this crook! This may or may not be a bit against the law, you know... Well, lets say this was for self-defence purposes.</p>";
+								Game.crooks--;
+								Game.detected();
+								
+							}else{
+								l("log").innerHTML += "<p>Oh no! you missed this shot!</p>";
+								if(Math.random()<0.25){Game.death();}else{Game.detected();}
+								
+							}
 						}else{
-							l("log").innerHTML += "<p>Oh no! you missed this shot!</p>";
-							if(Math.random()<0.25){Game.death();}else{Game.detected();}
-							
+							l("log").innerHTML += "<p>Click-click, you are out of ammo.</p>";
+							if(Math.random()<0.25){
+								Game.death();
+							}else{Game.detected();}
 						}
-						
 						
 						break;
 					case "bat":
