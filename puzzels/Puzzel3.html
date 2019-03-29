@@ -17,6 +17,14 @@
 		<div id="inv">
 			<button id="opt1" onclick="Game.opt1()"></button>
 			<button id="opt2" onclick="Game.opt2()"></button>
+			<div id="detopt">
+				<button id="wire cutter" onclick="Game.defend('wire cutter')">wire cutter</button>
+				<button id="soap" onclick="Game.defend('soap')">use soap</button>
+				<button id="handgun" onclick="Game.defend('handgun')">use handgun</button>
+				<button id="bat" onclick="Game.defend('bat')">use wooden bat</button>
+				<button id="hide" onclick="Game.defend('hide')">hide</button>
+				<button id="flee" onclick="Game.defend('flee')">flee</button>
+			</div>
 			<div id="content"></div>
 		</div>
 		
@@ -34,10 +42,15 @@
 			pos: "front",
 			inv: [],
 			txt: "",
+			crooks: 6,
 			startturn: function(where){
 				pos = where;
 				switch (where){
 					case "front":
+						if(Game.has("secret papers")){
+							Game.win()
+							break;
+						}
 						l("opt1").innerHTML = "backyard";
 						l("opt2").innerHTML = "hall";
 						txt = "You see the semi-giant house in front of you. Looking through a window, you see a silhouette of a man. There is no choice but to be careful in there.";
@@ -140,7 +153,7 @@
 						txt = "A TV, a pool table and a game console, everything you need for a good night of gaming. Apparently.";
 						if(Math.random()<0.3){
 							txt += " You find a small safe that is locked with some steel wires. They can probably be cut open somehow.";
-							if(Game.has("wire cutter"){
+							if(Game.has("wire cutter")){
 								txt += " You remember the wire cutter you found in the shed. By opening it, you find a baseball bat. You wonder why it was stored in that safe...";
 								Game.addtoinv("wooden bat");
 							}
@@ -179,7 +192,7 @@
 							l("opt1").innerHTML = "hallway (upper)";
 							l("opt2").innerHTML = "YEET out of a window";
 							txt = "You have the secret papers! You only have to find an escape route now. You can go the silent way, walking through the house again, or jump out of a window. This will probably draw some attention, but its faster.";
-							
+							Game.addtoinv("secret papers");
 						}
 					
 					default:
@@ -223,6 +236,120 @@
 			},
 			has: function(what){
 				return Game.inv.includes(what);
+			},
+			detected: function(){
+				if(Game.crooks>0){
+					l("detopt").style.display = "block";
+					Game.has("wire cutter")?l("wire cutter").style.display = "initial":l("wire cutter").style.display = "none";
+					Game.has("soap")?l("soap").style.display = "initial":l("soap").style.display = "none";
+					Game.has("loaded handgun")?l("handgun").style.display = "initial":l("handgun").style.display = "none";
+					Game.has("wooden bat")?l("bat").style.display = "initial":l("bat").style.display = "none";
+					l("opt1").disabled = true;
+					l("opt2").disabled = true;
+					if(Game.crooks==6){l("log").innerHTML += "<p><b><u>OH NO!</u></b> You have been heard and people are coming your way! You can defend yourself in various ways, but some are more effective than others. Choose wisely and choose fast!";}
+				}
+				
+			},
+			defend: function(attr){
+				switch(attr){
+					
+					case "wire cutter":
+						if(Math.random()<0.05){
+							l("log").innerHTML += "<p>I don't know how you managed to do it, but it seems you threw the wire cutter in a way that both blades landed perfectly in the crook's eyes. He's blinded and cannot fight anymore!</p>";
+							Game.crooks--;
+							Game.unfreeze();
+							if(Math.random()<0.75){
+								Game.detected();
+							}
+						}else{
+							l("log").innerHTML += "<p>I have no idea what your plan was, but it failed nontheless.</p>";
+							if(Math.random()<0.5){Game.death();}else{Game.detected();}
+						}
+						break;
+					case "soap":
+						if(Math.random()<0.3){
+							l("log").innerHTML += "<p>You throw the soap through the room. The person chasing you wasn't alert enough to realize this, and slipped over!</p>";
+							Game.crooks--;
+							Game.unfreeze();
+							if(Math.random()<0.7){Game.detected();}
+						}else{
+							l("log").innerHTML += "<p>The crook saw your 'hollywood director' trick, picked up the soap and threw it at your eyes. It seems they have practiced this a lot.</p>";
+							if(Math.random()<0.5){Game.death();}else{Game.detected();}
+						}
+						break;
+					case "handgun":
+						if(Math.random()<0.95){
+							l("log").innerHTML += "<p>Jeepers! you completely neutered this crook! This may or may not be a bit against the law, you know... Well, lets say this was for self-defence purposes.</p>";
+							Game.crooks--;
+							Game.detected();
+							
+						}else{
+							l("log").innerHTML += "<p>Oh no! you missed this shot!</p>";
+							if(Math.random()<0.25){Game.death();}else{Game.detected();}
+							
+						}
+						
+						
+						break;
+					case "bat":
+						if(Math.random()<0.77){
+							l("log").innerHTML += "<p>A silent knock-out will do the trick. Let's hope nobody saw this.</p>";
+							Game.crooks--;
+							Game.unfreeze();
+							if(Math.random()<0.11){Game.detected();}
+							
+						}else{
+							l("log").innerHTML += "<p>Missed! Better aim for the head instead of the shoulders next time.</p>";
+							if(Math.random()<0.6){Game.death();}else{Game.detected();}
+						}
+						
+						break;
+					case "hide":
+						if(Math.random()<0.7){
+							l("log").innerHTML += "<p>You hid succesfully! you won't have them crooks tailing you for now.</p>";
+							Game.unfreeze();
+						}else{
+							l("log").innerHTML += "<p>Busted! Escaping will be a tough challenge when hid into a narrow corner, though...</p>";
+							if(Math.random()<0.95){Game.death();}else{Game.detected();}
+						}
+						
+						
+						break;
+					case "flee":
+						if(Math.random()<0.33){
+							if(Game.has("secret papers")){
+								l("log").innerHTML += "<p>You fled succesfully from the house! And with the papers! Congratulations!</p>";
+								Game.win();
+							}else{
+								l("log").innerHTML += "<p>You fled from the house, but your mission wasn't over. You have to come back tommorrow, but it beats starting over.</p>";
+								Game.unfreeze();
+								Game.startturn("front");
+							}
+						}else{
+							l("log").innerHTML += "<p>Someone saw you flee! The problem is, you came walking and they have a speedy speedcar. This will not end well.</p>";
+							Game.death();
+						}
+						
+						
+						break;
+					default:
+						console.warn("attribute not found @ " + attr);
+					
+				}
+				
+			},
+			unfreeze: function(){
+				l("opt1").disabled = false;
+				l("opt2").disabled = false;
+				l("detopt").style.display = "none";
+			},
+			death: function(){
+				l("log").innerHTML += "<h1>DEATH!</h1><p>t'was nice working with you, agent, but this mission came to an end. If you want to retry, please refresh the browser window.</p><p><sup>Note from the developer: you failed lol</sup></p>";
+				l("log").style.backgroundColor = "red";
+			},
+			win: function(){
+				l("log").innerHTML += "<h1>MISSION PASSED!</h1><p>Congratulations! You beat this game!</p><p><sup>Note from the developer: epic</sup></p>";
+				l("log").style.backgroundColor = "lime";
 			}
 		}
 		
