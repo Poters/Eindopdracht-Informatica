@@ -381,6 +381,7 @@
 			death: function(){
 				l("log").innerHTML += "<h1>DEATH!</h1><p>t'was nice working with you, agent, but this mission came to an end. If you want to retry, please refresh the browser window.</p><p>You survived " + Game.turn + " turns.</p><p><sup>Note from the developer: you failed lol</sup></p>";
 				l("log").style.backgroundColor = "red";
+				l("inv").style.display = "none";
 			},
 			win: function(){
 				l("log").innerHTML += "<h1>MISSION PASSED!</h1><p>Congratulations! You beat this game!</p><p>Fetching the papers took you " + Game.turn + " turns.</p><p><sup>Note from the developer: epic</sup></p>";
