@@ -193,20 +193,27 @@
 							l("opt2").innerHTML = "YEET out of a window";
 							txt = "You have the secret papers! You only have to find an escape route now. You can go the silent way, walking through the house again, or jump out of a window. This will probably draw some attention, but its faster.";
 							Game.addtoinv("secret papers");
-							break;
+						}else{
+							txt = "You don't have the code combination!";
+							l("opt1").innerHTML = "hallway (upper)";
+							l("opt2").innerHTML = "hallway (upper)";
 						}
+						if(Math.random()<0.2){Game.detected()};
+						break;
 					case "YEET out of a window":
 						if(Math.random()<0.4){
-							l("log").innerHTML += "<p>They probably heard the shattered glass, but when they realized what happened, you already were 2 streets ahead.</p>";
+							txt = "They probably heard the shattered glass, but when they realized what happened, you already were 2 streets ahead.";
 							Game.win();
 						}else{
-							l("log").innerHTML += "<p>The shattered glass did not came without some notice. They are already almost behind you.</p>";
-							if(Math.random()<0.6){
-								Game.detected();
-							}else{
-								Game.death();
+							txt = "The shattered glass did not came without some notice. They are already almost behind you.";
+								if(Math.random()<0.3){
+									Game.death();
+								}else{
+									Game.detected();
+								}
 							}
-						}
+							
+						
 						
 						break;
 					default:
@@ -214,6 +221,7 @@
 						return "error";
 				}
 				l("log").innerHTML += "<p><b>" + pos + "</b>: " + txt + "</p>";
+				Game.turn++;
 					
 				},
 			opt1: function(){
@@ -358,11 +366,11 @@
 				l("detopt").style.display = "none";
 			},
 			death: function(){
-				l("log").innerHTML += "<h1>DEATH!</h1><p>t'was nice working with you, agent, but this mission came to an end. If you want to retry, please refresh the browser window.</p><p><sup>Note from the developer: you failed lol</sup></p>";
+				l("log").innerHTML += "<h1>DEATH!</h1><p>t'was nice working with you, agent, but this mission came to an end. If you want to retry, please refresh the browser window.</p><p>You survived " + Game.turn + " turns.</p><p><sup>Note from the developer: you failed lol</sup></p>";
 				l("log").style.backgroundColor = "red";
 			},
 			win: function(){
-				l("log").innerHTML += "<h1>MISSION PASSED!</h1><p>Congratulations! You beat this game!</p><p><sup>Note from the developer: epic</sup></p>";
+				l("log").innerHTML += "<h1>MISSION PASSED!</h1><p>Congratulations! You beat this game!</p><p>Fetching the papers took you " + Game.turn + " turns.</p><p><sup>Note from the developer: epic</sup></p>";
 				l("log").style.backgroundColor = "lime";
 			}
 		}
