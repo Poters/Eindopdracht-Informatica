@@ -193,8 +193,22 @@
 							l("opt2").innerHTML = "YEET out of a window";
 							txt = "You have the secret papers! You only have to find an escape route now. You can go the silent way, walking through the house again, or jump out of a window. This will probably draw some attention, but its faster.";
 							Game.addtoinv("secret papers");
+							break;
 						}
-					
+					case "YEET out of a window":
+						if(Math.random()<0.4){
+							l("log").innerHTML += "<p>They probably heard the shattered glass, but when they realized what happened, you already were 2 streets ahead.</p>";
+							Game.win();
+						}else{
+							l("log").innerHTML += "<p>The shattered glass did not came without some notice. They are already almost behind you.</p>";
+							if(Math.random()<0.6){
+								Game.detected();
+							}else{
+								Game.death();
+							}
+						}
+						
+						break;
 					default:
 						console.warn("I haven't programmed this path yet @ " + pos);
 						return "error";
