@@ -58,7 +58,7 @@
 					case "backyard":
 						l("opt1").innerHTML = "shed";
 						l("opt2").innerHTML = "front";
-						txt = "It smells like rotten apples. The source isn't hard to deduce, a giant tree is mayestously asserting dominance over the garden. You see a small shaggy shed in the corner. Maybe it's worth checking out?";
+						txt = "It smells like rotten apples. The source isn't hard to deduce, a giant tree is majesticly asserting dominance over the garden. You see a small shaggy shed in the corner. Maybe it's worth checking out?";
 						if(Game.has("basement key position")){
 							txt += " Looking under the apple tree, you see something silvery shining. You pick up the key which will later open up the trapdoor to the basement."
 							Game.addtoinv("basement key");
@@ -94,7 +94,7 @@
 						l("opt1").innerHTML = "kitchen";
 						l("opt2").innerHTML = "living room";
 						txt = "A large table with room for 6 persons tells that the people in this house are with many. It is best not to encounter them unprepared.";
-						if(Math.random()>0.7 && !Game.has("desktable key")){txt += " You note a little key on the table. (+ desktable key)"; Game.addtoinv("desktable key");}
+						if(Math.random()<0.7 && !Game.has("desktable key")){txt += " You note a little key on the table. (+ desktable key)"; Game.addtoinv("desktable key");}
 						break;
 					case "open desktable":
 						l("opt1").innerHTML = "study";
@@ -115,7 +115,7 @@
 					case "hallway (lower)":
 						l("opt1").innerHTML = "bathroom";
 						l("opt2").innerHTML = "sleeping room";
-						txt = "The voices you heard at the bottom of the stairs are getting louder. It's best to move silently on from now on. Everytime you pass through a hallway, you have 1% chance of being discovered. When discovered, you have to flee or you have to self-defend. Some methods of self defending have more succes chance, and some are more silent reducing the chance you being forced to flee.";
+						txt = "The voices you heard at the bottom of the stairs are getting louder. It's best to move silently on from now on. Everytime you pass through a hallway, you have a chance of being discovered. When discovered, you have to flee or you have to self-defend. Some methods of self defending have more succes chance, and some are more silent reducing the chance you being forced to flee.";
 						if(Math.random<0.01){
 							Game.detected()
 						}
@@ -174,7 +174,7 @@
 						if(Game.has("basement key")){
 							l("opt1").innerHTML = "spiral staircase";
 							l("opt2").innerHTML = "spiral staircase";
-							txt = "The basement opens, but looks quite empty. On closer inspection, you find a tattered note saying '4786'".
+							txt = "The basement opens, but looks quite empty. On closer inspection, you find a tattered note saying '4786'";
 							Game.addtoinv("Code: 4786");
 						}else{
 							l("log").innerHTML += "<p><b>basement</b>: Without key, entering this place is impossible.";
