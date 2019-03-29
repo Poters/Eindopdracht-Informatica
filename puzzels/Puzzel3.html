@@ -116,7 +116,7 @@
 						l("opt1").innerHTML = "bathroom";
 						l("opt2").innerHTML = "sleeping room";
 						txt = "The voices you heard at the bottom of the stairs are getting louder. It's best to move silently on from now on. Everytime you pass through a hallway, you have a chance of being discovered. When discovered, you have to flee or you have to self-defend. Some methods of self defending have more succes chance, and some are more silent reducing the chance you being forced to flee.";
-						if(Math.random<0.05){
+						if(Math.random<0.1){
 							Game.detected()
 						}
 						break;
@@ -145,7 +145,7 @@
 						l("opt1").innerHTML = "hallway (lower)";
 						l("opt2").innerHTML = "lounge";
 						txt = "...";
-						if(Math.random()<0.07){Game.detected();}
+						if(Math.random()<0.1){Game.detected();}
 						break;
 					case "lounge":
 						l("opt1").innerHTML = "hallway (upper)";
@@ -166,7 +166,7 @@
 						l("opt1").innerHTML = "spiral staircase";
 						l("opt2").innerHTML = "meeting room";
 						txt = "To the left lies a spiral staircase that seems to lead to a basement. To the right is the meeting room, where the safe is located. It is next to the rooms the crooks are though, so the chances they see you in there are pretty high.";
-						if(Math.random<0.1){Game.detected();}
+						if(Math.random<0.15){Game.detected();}
 						break;
 					case "spiral staircase":
 						l("opt1").innerHTML = "hallway (upper)";
@@ -188,7 +188,7 @@
 						l("opt1").innerHTML = "hallway (upper)";
 						l("opt2").innerHTML = "open safe";
 						txt = "The voices are coming from the next room. It's now a simple question of opening that safe and escaping with the papers.";
-						if(Math.random()<0.3){Game.detected()}
+						if(Math.random()<0.35){Game.detected()}
 						break;
 					case "open safe":
 						if(Game.has("Code: 4786")){
@@ -201,7 +201,7 @@
 							l("opt1").innerHTML = "hallway (upper)";
 							l("opt2").innerHTML = "hallway (upper)";
 						}
-						if(Math.random()<0.3){Game.detected()};
+						if(Math.random()<0.35){Game.detected()};
 						break;
 					case "YEET out of a window":
 						if(Math.random()<0.4){
@@ -272,6 +272,8 @@
 					l("opt1").disabled = true;
 					l("opt2").disabled = true;
 					if(Game.crooks==6){l("log").innerHTML += "<p><b><u>OH NO!</u></b> You have been heard and people are coming your way! You can defend yourself in various ways, but some are more effective than others. Choose wisely and choose fast!";}
+				}else{
+					Game.unfreeze();
 				}
 				
 			},
@@ -341,7 +343,7 @@
 						
 						break;
 					case "flee":
-						if(Math.random()<0.33){
+						if(Math.random()<0.5){
 							if(Game.has("secret papers")){
 								l("log").innerHTML += "<p>You fled succesfully from the house! And with the papers! Congratulations!</p>";
 								Game.win();
