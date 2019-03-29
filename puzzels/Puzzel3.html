@@ -73,7 +73,7 @@
 					case "shed":
 						l("opt1").innerHTML = "backyard";
 						l("opt2").innerHTML = "backyard";
-						txt = "The shad have had better times. You wonder when it's going to collapse. On the worktable lays a wire cutter. Maybe its usefull for later.";
+						txt = "The shad has seen better times. You wonder when it's going to collapse. On the worktable lays a wire cutter. Maybe its usefull for later.";
 						Game.addtoinv("wire cutter");
 						break;
 					case "living room":
@@ -209,7 +209,7 @@
 							txt = "They probably heard the shattered glass, but when they realized what happened, you already were 2 streets ahead.";
 							Game.win();
 						}else{
-							txt = "The shattered glass did not came without some notice. They are already almost behind you.";
+							txt = "The shattered glass did not come without some notice. They are already almost behind you.";
 								if(Math.random()<0.3){
 									Game.death();
 								}else{
@@ -226,7 +226,7 @@
 				}
 				l("log").innerHTML += "<p><b>" + pos + "</b>: " + txt + "</p>";
 				Game.turn++;
-					
+				window.scrollBy(0,100);
 				},
 			opt1: function(){
 				var option = l("opt1").innerHTML;
@@ -276,6 +276,7 @@
 				}else{
 					Game.unfreeze();
 					l("log").innerHTML += "You knocked down all the baddies in here, so you are free to do whatever you want now.";
+					
 				}
 				
 			},
@@ -291,7 +292,7 @@
 								Game.detected();
 							}
 						}else{
-							l("log").innerHTML += "<p>I have no idea what your plan was, but it failed nontheless.</p>";
+							l("log").innerHTML += "<p>I have no idea what your plan was, but it failed nonetheless.</p>";
 							if(Math.random()<0.5){Game.death();}else{Game.detected();}
 						}
 						break;
