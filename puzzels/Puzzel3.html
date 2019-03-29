@@ -94,7 +94,7 @@
 						l("opt1").innerHTML = "kitchen";
 						l("opt2").innerHTML = "living room";
 						txt = "A large table with room for 6 persons tells that the people in this house are with many. It is best not to encounter them unprepared.";
-						if(Math.random()<0.7 && !Game.has("desktable key")){txt += " You note a little key on the table. (+ desktable key)"; Game.addtoinv("desktable key");}
+						if(Math.random()<0.8 && !Game.has("desktable key")){txt += " You note a little key on the table. (+ desktable key)"; Game.addtoinv("desktable key");}
 						break;
 					case "open desktable":
 						l("opt1").innerHTML = "study";
@@ -116,7 +116,7 @@
 						l("opt1").innerHTML = "bathroom";
 						l("opt2").innerHTML = "sleeping room";
 						txt = "The voices you heard at the bottom of the stairs are getting louder. It's best to move silently on from now on. Everytime you pass through a hallway, you have a chance of being discovered. When discovered, you have to flee or you have to self-defend. Some methods of self defending have more succes chance, and some are more silent reducing the chance you being forced to flee.";
-						if(Math.random<0.01){
+						if(Math.random<0.05){
 							Game.detected()
 						}
 						break;
@@ -132,7 +132,7 @@
 						txt = "The bedroom isn't more than a bed with a small table. That table, however, has a small drawer. It's a bit rusty, so opening it could draw some attention.";
 						break;
 					case "bedside table":
-						if(Math.random()<0.07){
+						if(Math.random()<0.25){
 							Game.detected()
 						}else{
 							txt = "Succes! A loaded gun appears for you to defend yourself. It has no silencer, so only use this in dire situations!";
@@ -145,7 +145,7 @@
 						l("opt1").innerHTML = "hallway (lower)";
 						l("opt2").innerHTML = "lounge";
 						txt = "...";
-						if(Math.random()<0.01){Game.detected();}
+						if(Math.random()<0.07){Game.detected();}
 						break;
 					case "lounge":
 						l("opt1").innerHTML = "hallway (upper)";
@@ -158,12 +158,15 @@
 								Game.addtoinv("wooden bat");
 							}
 						}
+						if(Math.random()<0.1){
+							Game.detected();
+						}
 						break;
 					case "hallway (upper)":
 						l("opt1").innerHTML = "spiral staircase";
 						l("opt2").innerHTML = "meeting room";
 						txt = "To the left lies a spiral staircase that seems to lead to a basement. To the right is the meeting room, where the safe is located. It is next to the rooms the crooks are though, so the chances they see you in there are pretty high.";
-						if(Math.random<0.01){Game.detected();}
+						if(Math.random<0.1){Game.detected();}
 						break;
 					case "spiral staircase":
 						l("opt1").innerHTML = "hallway (upper)";
@@ -185,7 +188,7 @@
 						l("opt1").innerHTML = "hallway (upper)";
 						l("opt2").innerHTML = "open safe";
 						txt = "The voices are coming from the next room. It's now a simple question of opening that safe and escaping with the papers.";
-						if(Math.random()<0.1){Game.detected()}
+						if(Math.random()<0.3){Game.detected()}
 						break;
 					case "open safe":
 						if(Game.has("Code: 4786")){
@@ -198,7 +201,7 @@
 							l("opt1").innerHTML = "hallway (upper)";
 							l("opt2").innerHTML = "hallway (upper)";
 						}
-						if(Math.random()<0.2){Game.detected()};
+						if(Math.random()<0.3){Game.detected()};
 						break;
 					case "YEET out of a window":
 						if(Math.random()<0.4){
