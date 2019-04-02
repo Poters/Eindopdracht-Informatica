@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <link href="uitleg.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <img src="agent.png">
+    <br>
+    <p id="tekst"></p>
+    <br>
+    <button onclick="tekst1()"> 1 </button>
+    <button onclick="tekst2()"> 2 </button>
+    <button onclick="tekst3()"> 3 </button>
+  </body>
+</html>
+<script>
+function tekst1() {
+  document.getElementById("tekst").innerHTML = "???: Nice, you are finally here, i am glad you could make it this quick.";
+}
+
+function tekst2() {
+  document.getElementById("tekst").innerHTML = "???: There is not much time to explain anything, but i am glad you were able to make it.";
+}
+
+function tekst3() {
+  document.getElementById("tekst").innerHTML = "???: Go quickly now, you know what you need to do right? Good luck!";
+}
+</script>
