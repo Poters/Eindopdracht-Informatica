@@ -312,12 +312,13 @@
 							if(Math.random()<0.95){
 								l("log").innerHTML += "<p>Jeepers! you completely neutered this crook! This may or may not be a bit against the law, you know... Well, lets say this was for self-defence purposes.</p>";
 								Game.crooks--;
+								Game.ammo--;
 								Game.detected();
 								
 							}else{
 								l("log").innerHTML += "<p>Oh no! you missed this shot!</p>";
 								if(Math.random()<0.25){Game.death();}else{Game.detected();}
-								
+								Game.ammo--;
 							}
 						}else{
 							l("log").innerHTML += "<p>Click-click, you are out of ammo.</p>";
