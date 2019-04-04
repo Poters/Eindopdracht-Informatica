@@ -7,3 +7,6 @@ button {
   height: 5%;
   border-style: inset;
 }
+#next{
+  display: none;
+}
